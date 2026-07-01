@@ -23,6 +23,9 @@ app.get("/gifs/:gif.:ext", async (req, res) => {
     // redirect to donos if not discord
     if (!req.header("User-Agent")?.toLowerCase().includes("discord")) return res.redirect(302, "/");
 
+    res.setHeader("Content-Type", "image/webp");
+    res.status(200);
+
     const { gif: gifID, ext } = req.params;
 
     if (!gifID || !ext) return res.redirect(302, "/");
@@ -99,7 +102,7 @@ app.get("/gifs/:gif.:ext", async (req, res) => {
             { input: l, top: Math.round(h * -0.1), left: 0 },
             { input: r, top: Math.round(h * 0.1), left: hw },
         ])
-        .gif()
+        .webp()
         .toBuffer();
 
     const f3 = await blank
@@ -108,13 +111,13 @@ app.get("/gifs/:gif.:ext", async (req, res) => {
             { input: l, top: Math.round(h * 0.1), left: 0 },
             { input: r, top: Math.round(h * -0.1), left: hw },
         ])
-        .gif()
+        .webp()
         .toBuffer();
 
     const ani = await sharp([f1, jpegBuffer, f3, jpegBuffer], {
         join: { animated: true },
     })
-        .gif({ delay: Array(4).fill(300), loop: 0 })
+        .webp({ delay: Array(4).fill(300), loop: 0 })
         .toBuffer();
 
     const resized = sharp(ani, { animated: true }).resize(330);
@@ -141,12 +144,12 @@ app.get("/gifs/:gif.:ext", async (req, res) => {
         .webp({ delay: Array(4).fill(300), loop: 0 })
         .toBuffer();
 
-    res.setHeader("Content-Type", "image/webp");
     res.send(finalImg);
 });
 
 app.get("/gifs/:gif/", (req, res) => {
-    if (!req.header("User-Agent")?.toLowerCase().includes("discord")) return res.redirect(302, "/");
+    if (!req.header("User-Agent")?.toLowerCase().includes("discord"))
+        return res.redirect(302, "/");
 
     const gifID = req.params.gif;
 
@@ -160,7 +163,7 @@ app.get("/gifs/:gif/", (req, res) => {
 app.get("/gx-sevenfs/:gif/", (req, res) => {
     const gifID = req.params.gif;
 
-    res.redirect(`https://limes.pink/s/i/x-seven?gif=${gifID}`)
+    res.redirect(`https://limes.pink/s/i/x-seven?gif=${gifID}`);
 });
 
 app.get("/{*catchall}", (_req, res) => {
