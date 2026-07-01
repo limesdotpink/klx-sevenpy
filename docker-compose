@@ -1,0 +1,9 @@
+services:
+  klx-sevenpy:
+    #build: .
+    image: ghcr.io/limesdotpink/klx-sevenpy:main
+    ports:
+      - '3000:3000'
+    restart: unless-stopped
+    env_file: '.env'
+
