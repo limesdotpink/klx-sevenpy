@@ -1,0 +1,37 @@
+{
+  "name": "six-seven-in-discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=production node server.ts",
+    "dev": "nodemon server.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "LGPL-3.0-or-later",
+  "type": "module",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "pino-http": "^11.0.0",
+    "sharp": "^0.35.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/compression": "^1.8.1",
+    "@types/express": "^5.0.6",
+    "eslint": "^10.6.0",
+    "globals": "^17.7.0",
+    "jiti": "^2.7.0",
+    "nodemon": "^3.1.14",
+    "typescript-eslint": "^8.62.1"
+  },
+  "allowScripts": {
+    "canvas@2.11.2": true
+  }
+}
