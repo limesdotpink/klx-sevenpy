@@ -158,8 +158,6 @@ app.get("/gifs/:gif/", (req, res) => {
 
 // on second run, redirect to the help page, passing the gif in the query
 app.get("/gx-sevenfs/:gif/", (req, res) => {
-    if (!req.header("User-Agent")?.toLowerCase().includes("discord")) return res.redirect(302, "/");
-
     const gifID = req.params.gif;
 
     res.redirect(`https://limes.pink/s/i/x-seven?gif=${gifID}`)
