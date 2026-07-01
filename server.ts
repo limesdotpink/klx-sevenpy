@@ -157,7 +157,7 @@ app.get("/gifs/:gif/", (req, res) => {
 });
 
 app.get("/{*catchall}", (_req, res) => {
-    res.redirect("https://ko-fi.com/limesdotpink");
+    res.redirect("https://limes.pink/s/i/x-seven");
 });
 
 app.listen(port, () => {
